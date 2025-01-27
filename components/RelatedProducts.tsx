@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import React from 'react'
-import StarRatings from 'react-star-ratings';
+// import StarRatings from 'react-star-ratings';
 
 const RelatedProducts = () => {
     const products = [
@@ -56,14 +56,14 @@ const RelatedProducts = () => {
                                 <div className='text-md font-semibold text-center'>
                                     {product.title}
                                     <div className='flex items-center justify-center gap-2'>
-                                        <StarRatings
+                                        {/* <StarRatings
                                             starRatedColor='orange'
                                             numberOfStars={5}
                                             rating={product.rating}
                                             starDimension='16px'
                                             starSpacing='2px'
                                             name='rating'
-                                        />
+                                        /> */}
                                     </div>
                                 </div>
                             </div>

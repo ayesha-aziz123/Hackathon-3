@@ -15,7 +15,7 @@ interface Product {
 }
 
 async function getData() {
-  const query = ` *[_type == "product" ]{
+  const query = ` *[_type == "product" ||  shopGrid]{
     _id,
     name,
     "image":image.asset->url,
@@ -23,7 +23,7 @@ async function getData() {
     stockLevel,
     category,
     discountPercentage
-  }[0...12]`;
+}[0...16]`;
 
   const res = await client.fetch(query);
   console.log(res);

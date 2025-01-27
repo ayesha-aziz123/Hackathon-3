@@ -32,6 +32,11 @@ export default {
         Rule.max(150).warning("Keep the description under 150 characters."),
     },
     {
+      name: "product_id",
+      type: "string",
+      title: "stripe-Product_id",
+    },
+    {
       name: "discountPercentage",
       type: "number",
       title: "Discount Percentage",
@@ -42,6 +47,16 @@ export default {
       name: "isFeaturedProduct",
       type: "boolean",
       title: "Is Featured Product",
+    },
+    {
+      name: "istrendingProduct",
+      type: "boolean",
+      title: "Is Trending Product",
+    },
+    {
+      name: "shopGrid",
+      type: "boolean",
+      title: "Is Shop Grid",
     },
     {
       name: "stockLevel",
@@ -58,6 +73,8 @@ export default {
         list: [
           { title: "Chair", value: "Chair" },
           { title: "Sofa", value: "Sofa" },
+          { title: "Trending", value: "Trending" },
+          { title: "electronics", value: "electronics" },
         ],
       },
       validation: (Rule: any) => Rule.required().error("Category is required"),

@@ -1,6 +1,21 @@
 import Image from "next/image";
+import Link from "next/link";
 
-function TrendingProduct() {
+interface Product {
+  _id: string;
+  name: string;
+  image: string;
+  price: number;
+  stockLevel: number;
+  category: string;
+  discountPercentage: number;
+}
+
+interface Props {
+  data: Product[];
+}
+
+function TrendingProduct({ data }: Props) {
   return (
     <div className="max-w-[1920px] my-20 px-11 mx-auto">
       {/* Title */}
@@ -11,28 +26,35 @@ function TrendingProduct() {
       <div className="flex  flex-col gap-y-10">
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16">
-          {["img1", "img2", "img3", "img4"].map((img, index) => (
+          {data.map((img, index) => (
+             <Link key={img._id} href={`/products/${img._id}`}>
             <div
               key={index}
               className="w-full lg:w-[260px] shadow-lg shadow-gray-200 flex flex-col justify-center items-center"
             >
               <div className="w-full lg:w-[240px] h-[200px] md:h-[269.96px] mx-auto bg-[#F7F7F7]">
                 <Image
-                  src={`/trendingP/${img}.png`}
+                  src={img.image}
                   width={2000}
                   height={2000}
                   alt={"chair"}
-                  className="w-[190px] lg:w-[220px] h-full object-contain mx-auto"
+                  className="w-[190px] lg:w-[190px] h-full object-contain mx-auto"
                 />
               </div>
               <p className="font-bold py-3 set_lato text-[#151875] text-center">
-                Cantilever Chair
+                {img.name}
               </p>
               <div className="flex items-center gap-5">
-                <p className="text-[12px]">$26.00</p>
-                <p className="text-[12px] py-2 text-[#1518754D]">$42.00</p>
+                <p className="text-[12px]">
+                  {" "}
+                  ${img.price - (img.price * img.discountPercentage) / 100}
+                </p>
+                <p className="text-[12px] py-2 line-through text-[#b62313]">
+                  ${img.price}
+                </p>
               </div>
             </div>
+          </Link>
           ))}
         </div>
 
@@ -54,6 +76,8 @@ function TrendingProduct() {
               className="w-[150px] sm:w-[200px] lg:w-[213px] object-contain"
             />
           </div>
+          
+          
 
           {/* Discount Item 2 */}
           <div className="p-5 flex flex-col items-end w-full bg-[#FFF6FB] gap-5">
@@ -89,7 +113,9 @@ function TrendingProduct() {
                   />
                 </div>
                 <div>
-                  <p className="text-[#151875] font-[700]">Executive Seat Chair</p>
+                  <p className="text-[#151875] font-[700]">
+                    Executive Seat Chair
+                  </p>
                   <p>$32.00</p>
                 </div>
               </div>

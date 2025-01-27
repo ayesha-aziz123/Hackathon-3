@@ -3,7 +3,7 @@ import { HeartIcon } from "lucide-react";
 import Image from "next/image";
 import { BsCart2 } from "react-icons/bs";
 import { FaSearchPlus } from "react-icons/fa";
-import StarRatings from "react-star-ratings";
+// import StarRatings from "react-star-ratings";
 
 interface Props {
   img: string;
@@ -24,14 +24,14 @@ function ShopCard({ img, heading }: Props) {
           <div className="flex gap-x-6">
           <p className="text-[#111C85]">$26.00</p>
           <p className="text-[#FF2AAA]">$52.00</p>
-          <StarRatings
+          {/* <StarRatings
               starRatedColor="orange"
               numberOfStars={5}
               rating={4}
               starDimension="15px"
               starSpacing="2px"
               name="rating"
-            />
+            /> */}
           </div>
           <p className="py-4 set_lato lg:w-[591.93px] text-[17.67px] text-[#9295AA]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna in

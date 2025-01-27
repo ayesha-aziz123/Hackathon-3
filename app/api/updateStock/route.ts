@@ -65,11 +65,13 @@ export async function POST(request: Request) {
       message: "Stock updated successfully",
       updatedStockLevel,
     });
-  } catch (error: unknown) {  // Adding type assertion here
-    if (error instanceof Error) {  // Check if it's an instance of Error
+  } catch (error: unknown) {
+    // Adding type assertion here
+    if (error instanceof Error) {
+      // Check if it's an instance of Error
       console.error("Error updating stock:", error.message);
       console.error("Error stack trace:", error.stack);
-      
+
       // Return an error response
       return NextResponse.json(
         { message: "Internal server error", error: error.message },

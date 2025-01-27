@@ -11,6 +11,7 @@ export interface ProductsCart {
   currency: string;
   discountPercentage: number;
   stockLevel: number; // Added stockLevel
+  product_id: string;
 }
 
 function AddtoBag({
@@ -20,6 +21,7 @@ function AddtoBag({
   currency,
   _id,
   stockLevel,
+  product_id,
 }: ProductsCart) {
   const { addItem } = useShoppingCart();
   const [currentStock, setCurrentStock] = useState(stockLevel);
@@ -29,7 +31,8 @@ function AddtoBag({
     price: discountPercentage,
     currency: currency,
     image: image,
-    id: _id,
+    id: product_id,
+    product_id: product_id,
   };
 
   const handleAddToCart = async () => {
@@ -52,7 +55,6 @@ function AddtoBag({
         toast.success(`${name} added to cart!`); // Success notification
         console.log("Stock updated:", result.updatedStockLevel);
         console.log(currentStock);
-        
       } else {
         const data = await response.json();
         toast.error(data.message || "Failed to add to cart!"); // Error toast

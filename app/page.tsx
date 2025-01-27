@@ -24,7 +24,7 @@ export default async function Home() {
   }`;
   const featuredData1 = await client.fetch(query1);
 
-  const query2 = ` *[_type == "product"]{
+  const query2 = ` *[_type == "product"] | order(_createdAt asc){
     _id,
     name,
     "image":image.asset->url,
@@ -32,8 +32,19 @@ export default async function Home() {
     stockLevel,
     category,
     discountPercentage
-}[0...6]`;
+}[6...12]`;
   const latestProduct = await client.fetch(query2);
+
+  const query3 = ` *[_type == "product" && istrendingProduct]{
+    _id,
+    name,
+    "image":image.asset->url,
+    price,
+    stockLevel,
+    category,
+    discountPercentage
+}[0...12]`;
+  const trendingProduct = await client.fetch(query3);
 
   return (
     <div>
@@ -45,7 +56,7 @@ export default async function Home() {
         className1="max-w-[1920px] px-5 sm:mx-10 lg:mx-32 xl:mx-auto my-20"
       />
       <UniqueFeature />
-      <TrendingProduct />
+      <TrendingProduct data={trendingProduct} />
       <DiscountItem />
       <TopCategory />
       <Banner />

@@ -71,19 +71,10 @@ function Navbar() {
       </div>
 
       <div className="hidden lg:flex justify-center items-center w-[317px] h-[40px]">
-        {/* <input
-          type="search"
-          placeholder="search"
-          className="border-[1px] outline-none px-2 py-1 border-gray-300"
-        /> */}
-          <SearchWithSanity />
-        {/* <div className="bg-[#FB2E86]  flex items-center h-[35px] text-white">
-          <IoSearch className="w-[56px]  size-5 cursor-pointer hover:scale-105 " />
-        </div> */}
-
+        <SearchWithSanity />
       </div>
 
-      <div className="">
+      <div className="lg:hidden flex">
         <Sheet>
           <SheetTrigger>
             <div>
@@ -95,23 +86,18 @@ function Navbar() {
           </SheetTrigger>
           <SheetContent className="bg-white">
             <div className="mt-28">
-              <div className="flex justify-center gap-5 mb-10">
-                <Link href={"/shoppingCart"}>
-                  <BsCart2 size={20} className=" w-10 hover:text-pink-600" />
-                </Link>
+              <div className="flex justify-center flex-col gap-5 mb-10">
+                <div className="flex flex-row">
+                  <Link href={"/shoppingCart"}>
+                    <BsCart2 size={20} className=" w-10 hover:text-pink-600" />
+                  </Link>
 
-                <Link href={"/myaccount"}>
-                  <FiUser size={20} className=" w-10 hover:text-pink-600" />
-                </Link>
-
+                  <Link href={"/myaccount"}>
+                    <FiUser size={20} className=" w-10 hover:text-pink-600" />
+                  </Link>
+                </div>
                 <div className="relative">
-                  {/* <input
-                    type="text"
-                    placeholder="Search.."
-                    className=" w-full outline-none rounded-3xl md:px-6 px-2 py-2 border-[1px] text-black border-black"
-                  />
-                  <IoSearch className="absolute top-2 right-4 text-2xl" /> */}
-                  <SearchWithSanity/>
+                  <SearchWithSanity />
                 </div>
               </div>
               <ul className="flex flex-col text-xl gap-10 bg-white">

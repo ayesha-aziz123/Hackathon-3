@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import shopLeftData from "./ShopLeftData";
 import Link from "next/link";
@@ -151,6 +152,7 @@ const ShopLeft = () => {
       color: "/color6.png",
     },
   ];
+  
 
   return (
     <div className="max-w-[1920px] mx-auto">
@@ -391,12 +393,7 @@ const ShopLeft = () => {
                       <h4 className="text-pink-600 line-through">
                         {item.regularPrice}
                       </h4>
-                      <Image
-                        width={50}
-                        height={50}
-                        src={item.review}
-                        alt=""
-                      />
+                      <Image width={50} height={50} src={item.review} alt="" />
                     </div>
                     <p className="mt-3 md:w-[70%] text-[#7E81A2]">{item.des}</p>
                     <div className="flex items-center gap-4 ">
@@ -412,6 +409,12 @@ const ShopLeft = () => {
                             >
                               {item.icon}
                             </Link>
+                    {/* <button
+                      onClick={() => addToCart(item)}
+                      className="bg-gray-500"
+                    >
+                      Add to wishlist
+                    </button> */}
                           </div>
                         );
                       })}

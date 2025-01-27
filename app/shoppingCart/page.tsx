@@ -1,90 +1,25 @@
 "use client";
-import React, { useState, useEffect } from "react";
 import { useShoppingCart } from "use-shopping-cart";
 import Image from "next/image";
 import Link from "next/link";
 
-interface CartItem {
-  id: string;
-  name: string;
-  image?: string;
-  price: number;
-  quantity: number;
-}
+// interface CartItem {
+//   id: string;
+//   name: string;
+//   image?: string;
+//   price: number;
+//   quantity: number;
+// }
 
 const ShoppingCart: React.FC = () => {
   const {
     cartCount,
     clearCart,
-    incrementItem,
     totalPrice,
     cartDetails,
-    decrementItem,
     removeItem,
   } = useShoppingCart();
 
-  const [isUpdating, setIsUpdating] = useState(false); // To manage loading state
-  const [updatedStockLevel, setUpdatedStockLevel] = useState<{
-    [key: string]: number;
-  }>({}); // To store updated stock levels
-
-  const updateStock = async (productId: string, quantity: number) => {
-    try {
-      const response = await fetch("/api/updateStock", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productId, quantity }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        console.error("API Error:", data.message);
-        alert(data.message || "Failed to update stock.");
-        return false;
-      }
-
-      // Update the stock level in the state
-      setUpdatedStockLevel((prevState) => ({
-        ...prevState,
-        [productId]: (prevState[productId] || 0) + quantity,
-      }));
-
-      console.log("Stock updated:", data);
-      return true;
-    } catch (error) {
-      console.error("Fetch error:", error);
-      alert("Something went wrong while updating stock.");
-      return false;
-    }
-  };
-
-  const handleIncrement = async (item: CartItem) => {
-    if (isUpdating) return; // Prevent multiple requests
-
-    setIsUpdating(true);
-    const isStockAvailable = await updateStock(item.id, 1); // Check if stock is available
-    if (isStockAvailable) {
-      incrementItem(item.id);
-    }
-    setIsUpdating(false);
-  };
-
-  const handleDecrement = async (item: CartItem) => {
-    if (isUpdating) return; // Prevent multiple requests
-
-    setIsUpdating(true);
-    const isStockAvailable = await updateStock(item.id, -1); // Decrease stock in Sanity
-    if (isStockAvailable) {
-      decrementItem(item.id);
-    }
-    setIsUpdating(false);
-  };
-
-  useEffect(() => {
-    // Optionally, you can fetch updated stock levels when component mounts or after cart update
-    // For example, you might want to trigger a re-fetch of stock levels
-  }, [updatedStockLevel]); // Runs whenever stock changes
 
   return (
     <div className="bg-white text-[#1D3178] max-w-[1920px] mx-auto">
@@ -118,10 +53,10 @@ const ShoppingCart: React.FC = () => {
                         height={50}
                         className="w-12 h-12 md:w-16 md:h-16 object-cover rounded mr-4"
                       />
-                      <span className="truncate w-36 m:w-48">{item.name}</span>
+                      <span className="truncate w-36 md:w-48">{item.name}</span>
                     </td>
                     <td className="p-2 md:p-4">${item.price}</td>
-                    <td className="p-4 md:p-4">
+                    {/* <td className="p-4 md:p-4">
                       <div className="md:w-28 w-28">
                         <button
                           className="px-2 border rounded mr-2"
@@ -138,6 +73,12 @@ const ShoppingCart: React.FC = () => {
                         >
                           +
                         </button>
+                      </div>
+                    </td> */}
+                    <td className="p-2 md:p-4">
+                      <div>
+                        <p className="border p-2 text-center font-bold"> {item.quantity}</p>
+                        
                       </div>
                     </td>
 
@@ -189,7 +130,7 @@ const ShoppingCart: React.FC = () => {
               </button>
             </Link>
           </div>
-          <div className="bg-[#F4F4FC] p-6 rounded-md shadow-md">
+          {/* <div className="bg-[#F4F4FC] p-6 rounded-md shadow-md">
             <h1 className="text-xl text-center pb-4 font-semibold">
               Calculate Shipping
             </h1>
@@ -205,7 +146,7 @@ const ShoppingCart: React.FC = () => {
                 Calculate Shipping
               </button>
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

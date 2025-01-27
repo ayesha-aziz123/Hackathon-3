@@ -5,11 +5,11 @@ import Heading from "@/components/Heading";
 import RelatedProducts from "@/components/RelatedProducts";
 import ProductsDescriptions from "@/components/ProductsDescriptions";
 import Logos from "@/components/Logos";
-import StarRatings from "react-star-ratings";
 import AddtoBag from "@/components/AddtoBag";
 import { client } from "@/sanity/lib/client";
 import { MdFacebook } from "react-icons/md";
 import { FaGithub, FaInstagram } from "react-icons/fa";
+import Loading from "@/app/loading";
 
 type Product = {
   _id: string;
@@ -20,11 +20,13 @@ type Product = {
   stockLevel: number;
   category: string;
   discountPercentage: number;
+  product_id: string;
 };
 
 function ProductDetails({ params }: { params: { id: string } }) {
   const [data, setData] = useState<Product | null>(null);
-  const [error, setError] = useState<boolean>(false); // Error stat
+  const [error, setError] = useState<boolean>(false); // Error state
+  const [loading, setLoading] = useState<boolean>(false); // Error state
 
   const query = `*[_type == "product" && _id == $id][0]{
     _id,
@@ -34,23 +36,29 @@ function ProductDetails({ params }: { params: { id: string } }) {
     price,
     stockLevel,
     category,
-    discountPercentage
+    discountPercentage,
+    product_id
   }`;
 
   useEffect(() => {
     const fetchData = async () => {
+      if (loading) {
+        <Loading />;
+      }
+      setError(false); 
+
       try {
-        const product = await client.fetch(query, { id: params.id });
+        const product: Product = await client.fetch(query, { id: params.id });
         if (product) {
-          setData(product);
-          setError(false);
+          setData(product); 
         } else {
-          setError(true); // No product found
+          setError(true); 
         }
-      } catch (err) {
-        setError(true);
-        console.log(err);
-        // Fetch failed
+      } catch (error) {
+        console.error("Error fetching product data:", error);
+        setError(true); // Set error if fetch fails
+      } finally {
+        setLoading(false); // Stop loading
       }
     };
 
@@ -70,14 +78,10 @@ function ProductDetails({ params }: { params: { id: string } }) {
       });
 
     return () => subscription.unsubscribe();
-  }, [params.id, query]);
+  },[params.id,loading,query]);
 
   if (error) {
-    return (
-      <h1 className="flex justify-center text-red-700 font-bold text-4xl pt-4">
-        An Error!
-      </h1>
-    );
+    return console.log(error);
   }
 
   return (
@@ -144,14 +148,14 @@ function ProductDetails({ params }: { params: { id: string } }) {
               <div className="md:w-[45%] flex items-start gap-4 flex-col">
                 <h3 className="text-3xl font-bold">{data.name}</h3>
                 <div className="inline-flex gap-x-3 items-center">
-                  <StarRatings
+                  {/* <StarRatings
                     starRatedColor="orange"
                     numberOfStars={5}
                     rating={4} // Static rating
                     starDimension="20px"
                     starSpacing="2px"
                     name="rating"
-                  />
+                  /> */}
                   <span>(22)</span>
                 </div>
                 <div className="inline-flex gap-x-5">
@@ -179,6 +183,7 @@ function ProductDetails({ params }: { params: { id: string } }) {
                 </div>
 
                 <AddtoBag
+                  product_id={data.product_id}
                   key={data._id}
                   name={data.name}
                   image={data.image} // Pass image to AddtoBag
@@ -213,8 +218,8 @@ function ProductDetails({ params }: { params: { id: string } }) {
           </div>
         </section>
       ) : (
-        <h1 className="flex justify-center text-red-700 font-bold text-5xl pt-4">
-          Items Not Found!
+        <h1 className="flex justify-center text-red-700 font-bold text-3xl pt-4">
+          OOps Items Not Found!
         </h1>
       )}
 

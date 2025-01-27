@@ -7,6 +7,10 @@ import Footer from "@/components/Footer";
 import CartProvider from "@/components/Provider";
 import { Toaster } from "react-hot-toast";
 
+import {
+  ClerkProvider,
+ 
+} from "@clerk/nextjs";
 
 const font = Josefin_Sans({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
@@ -24,20 +28,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
+      <html lang="en">
+        <body className={`${font.className} ${font.className} antialiased`}>
+          <CartProvider>
+            <div className="max-w-[1920px] mx-auto">
+            
 
+              <Header />
+              <Navbar />
+              <Toaster />
+              {children}
 
-      <body className={`${font.className} ${font.className} antialiased`}>
-        <CartProvider>
-          <div className="max-w-[1920px] mx-auto">
-            <Header />
-            <Navbar />
-            <Toaster />
-            {children}
-            <Footer />
-          </div>
-        </CartProvider>
-      </body>
-    </html>
+              <Footer />
+            </div>
+          </CartProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

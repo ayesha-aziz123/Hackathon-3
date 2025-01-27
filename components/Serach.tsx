@@ -57,11 +57,11 @@ export default function SearchWithSanity() {
           placeholder="Search name or category..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="flex-1 px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="flex-1 sm:px-3 px-1 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <button
           onClick={handleSearch}
-          className="bg-pink-700 text-white px-4 py-2 rounded shadow hover:bg-pink-600 transition"
+          className="bg-pink-700 text-white sm:px-4 px-2 py-2 rounded shadow hover:bg-pink-600 transition"
         >
           Search
         </button>
@@ -77,22 +77,22 @@ export default function SearchWithSanity() {
 
       {/* Search Results */}
       {showResults && (
-        <div className="mt-4 bg-white absolute z-10 w-full max-h-80 overflow-y-auto rounded shadow-lg p-4">
-          <h2 className="text-lg font-bold mb-4">Search Results:</h2>
+        <div className="mt-4 bg-white absolute z-10 w-full md:h-[250px] h-44 overflow-y-auto rounded shadow-lg p-3">
+          <h2 className="text-lg font-bold mb-2">Search Results:</h2>
           {results.length > 0 ? (
             <div className="grid grid-cols-1 gap-4">
               {results.map((product: Product) => (
                 <Link href={`/products/${product._id}`} key={product._id}>
-                  <div className="flex gap-4 items-center bg-gray-100 border rounded shadow p-3 hover:bg-gray-200 transition">
+                  <div className="flex gap-x-4 items-center bg-gray-100 border rounded shadow p-3 hover:bg-gray-200 transition">
                     <Image
-                    width={200}
-                    height={200}
+                      width={200}
+                      height={200}
                       src={product.image}
                       alt={product.name}
-                      className="w-16 h-16 object-cover rounded"
+                      className="sm:w-16 sm:h-16 w-7 h-7 object-cover rounded"
                     />
                     <div>
-                      <h3 className="text-[12px] font-semibold text-gray-700">
+                      <h3 className="sm:text-[12px] text-[10px] font-semibold text-gray-700">
                         {product.name}
                       </h3>
                       <p className="text-xs py-1 text-slate-600">
