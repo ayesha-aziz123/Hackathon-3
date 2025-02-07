@@ -26,7 +26,7 @@ async function getData() {
 }[0...16]`;
 
   const res = await client.fetch(query);
-  console.log(res);
+  console.log(res._id);
   return res;
 }
 

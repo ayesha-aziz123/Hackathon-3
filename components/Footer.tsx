@@ -14,9 +14,9 @@ const Footer = () => {
               <h1 className="text-[38px] font-[800] text-black">Hekto</h1>
               <div className="mt-4 flex items-center gap-x-2 justify-center sm:justify-start">
                 {/* Search */}
-                <div className="w-full bg-white rounded-md items-center flex">
+                <div className="w-full bg-white rounded-md  items-center flex">
                   <input
-                    className="w-[70%] h-11 p-1 bg-white text-black outline-none opacity-75"
+                    className="w-[70%] h-11 p-1 bg-white text-black outline-none"
                     type="search"
                     placeholder="Search"
                   />

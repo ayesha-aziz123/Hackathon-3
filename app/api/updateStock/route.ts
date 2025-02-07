@@ -33,6 +33,7 @@ export async function POST(request: Request) {
     // Debug log for fetched product
     console.log("Fetched product:", product);
 
+    
     // Calculate updated stock level
     const updatedStockLevel = product.stockLevel - quantity;
 

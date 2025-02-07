@@ -43,9 +43,7 @@ function Navbar() {
                 <Link href={"/about"}>About</Link>
               </DropdownMenuItem>
 
-              <DropdownMenuItem className="active:bg-gray-400">
-                <Link href={"/demo"}>Demo</Link>
-              </DropdownMenuItem>
+              
               <DropdownMenuItem className="active:bg-gray-400">
                 <Link href={"/shopleft"}>Shop Left Sidebar</Link>
               </DropdownMenuItem>

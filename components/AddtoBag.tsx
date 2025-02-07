@@ -12,6 +12,11 @@ export interface ProductsCart {
   discountPercentage: number;
   stockLevel: number; // Added stockLevel
   product_id: string;
+  description:string;
+  quantity?:number
+  price:number,
+  totalPrice?:number,
+  
 }
 
 function AddtoBag({
@@ -22,49 +27,57 @@ function AddtoBag({
   _id,
   stockLevel,
   product_id,
+  description,
+
 }: ProductsCart) {
   const { addItem } = useShoppingCart();
+  
   const [currentStock, setCurrentStock] = useState(stockLevel);
 
   const products = {
+    _id:_id,
     name: name,
     price: discountPercentage,
     currency: currency,
     image: image,
     id: product_id,
     product_id: product_id,
+    description:description
   };
+  console.log("ADDtobag ki id==",products._id);
+  
 
   const handleAddToCart = async () => {
     try {
       const payload = {
-        productId: _id, // Ensure productId is included
-        quantity: 1, // Hardcoded quantity for adding 1 item
+        productId: _id, 
+        quantity: 1,
       };
-
+  
       const response = await fetch("/api/updateStock", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload), // Send correct payload
+        body: JSON.stringify(payload),
       });
-
+  
       if (response.ok) {
         const result = await response.json();
-        setCurrentStock((prev) => prev - 1); // Decrement stock
-        addItem(products); // Add to cart
-        toast.success(`${name} added to cart!`); // Success notification
-        console.log("Stock updated:", result.updatedStockLevel);
+        console.log(result);
+        setCurrentStock((prev) => prev - 1); // Update stock level
+        addItem(products); // Add item to cart
+        toast.success(`${name} added to cart!`);
         console.log(currentStock);
+        
       } else {
         const data = await response.json();
-        toast.error(data.message || "Failed to add to cart!"); // Error toast
+        toast.error(data.message || "Failed to add to cart!");
       }
     } catch (error) {
       console.error("Error adding to cart:", error);
-      toast.error("Something went wrong!"); // Error toast
+      toast.error("Something went wrong!");
     }
   };
-
+  
   return (
     <Button
       className="bg-pink-700 text-white rounded-[9px] text-[15px]

@@ -1,7 +1,7 @@
 "use client";
 import {
+  
   SignedIn,
-  SignedOut,
   SignInButton,
   UserButton,
   useUser,
@@ -12,10 +12,18 @@ import { FaRegHeart } from "react-icons/fa";
 import { LuPhoneCall } from "react-icons/lu";
 import { MdOutlineEmail } from "react-icons/md";
 import { useShoppingCart } from "use-shopping-cart";
+import { useEffect, useState } from "react";
 
 function Header() {
   const { cartCount } = useShoppingCart();
-  const { user } = useUser();
+  const { user, isLoaded } = useUser();
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    if (isLoaded && user) {
+      setUserName(user.fullName || user.username || user.firstName || "");
+    }
+  }, [isLoaded, user]);
 
   return (
     <div className="max-w-[1920px] bg-[#7E33E0] md:h-[44px] h-[65px] text-white  md:flex-row flex-col flex justify-evenly items-center">
@@ -55,7 +63,6 @@ function Header() {
 
         <div className="flex gap-x-1 items-center relative">
           <Link href={"/shoppingCart"}>
-            {" "}
             <BsCart2 className="size-[25px]  hover:text-pink-700" />
             <p className="absolute -top-2  rounded-md text-white -right-2">
               <span className="rounded-3xl py-[3px] px-1 bg-pink-700">
@@ -66,7 +73,7 @@ function Header() {
         </div>
       </div>
 
-      <div className="">
+      {/* <div>
         <div className="flex gap-x-2 items-center">
           <SignedOut>
             <SignInButton>
@@ -76,20 +83,32 @@ function Header() {
           <SignedIn>
             <UserButton />
           </SignedIn>
-          <h1 className="font-bold">{user?.fullName}</h1>
+          {isLoaded ? <h1 className="font-bold">{userName}</h1> : <p>Loading...</p>}
         </div>
-      </div>
-      {/* <div className="flex">
-          <SignedOut>
-            <SignInButton>
-              <button>Login</button>
-            </SignInButton>
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-          <h1>{user?.firstName}</h1>
-        </div> */}
+      </div> */}
+
+        <SignedIn>
+          <div className="flex flex-row items-center gap-x-9">
+            <div>
+              <Link href={"/orderList"} className=" ">
+                <h1 className="border-2 px-2 py-1 hover:bg-pink-600 rounded-sm">
+                  Orders
+                </h1>
+              </Link>
+            </div>
+            <div className="flex items-center gap-x-2">
+              <UserButton />
+              <h2>{userName}</h2>
+            </div>
+          </div>
+        </SignedIn>
+        {!user && (
+          <SignInButton mode="modal">
+            <button className="text-[18px] font-semibold hover:text-darkColor hoverEffect">
+              Login
+            </button>
+          </SignInButton>
+        )}
     </div>
   );
 }

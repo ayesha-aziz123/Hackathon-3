@@ -1,7 +1,9 @@
+"use client"
 import Image from "next/image";
 import Button from "./Button";
 
 function Hero() {
+  
   return (
     <div className="max-w-[1920px] mx-auto  bg-[#f2f0ff] flex flex-col lg:flex-row">
       {/* Left Section */}

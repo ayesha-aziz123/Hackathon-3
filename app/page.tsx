@@ -12,7 +12,8 @@ import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 
 export default async function Home() {
-  // Featured products data fetch
+
+  //  products data fetch
   const query1 = ` *[_type == "product" && isFeaturedProduct]{
     _id,
     name,
@@ -45,6 +46,8 @@ export default async function Home() {
     discountPercentage
 }[0...12]`;
   const trendingProduct = await client.fetch(query3);
+
+
 
   return (
     <div>

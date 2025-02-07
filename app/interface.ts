@@ -20,3 +20,10 @@ export interface fullProduct {
     price: number,
     product_id: string
 }
+export interface formData{
+    name:string,
+    phone:string,
+    email:string,
+    address:string,
+    city:string,
+}
