@@ -49,7 +49,7 @@ export default function SearchWithSanity() {
   };
 
   return (
-    <div className="relative  flex-wrap mx-auto bg-gray-50 shadow-md rounded max-w-2xl">
+    <div className="relative z-[100]  flex-wrap mx-auto bg-gray-50 shadow-md rounded max-w-2xl">
       {/* Search Input and Buttons */}
       <div className="flex items-center gap-1">
         <input
