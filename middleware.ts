@@ -22,6 +22,8 @@ const isPublicRoute = createRouteMatcher([
   "/myaccount",
 ]);
 
+
+
 export default clerkMiddleware(async (auth, request) => {
   const url = new URL(request.url);
 
@@ -33,7 +35,7 @@ export default clerkMiddleware(async (auth, request) => {
   if (url.pathname === "/shoppingCart") {
     // Check if the user is authenticated
     const userId = auth;
-
+    
     if (!userId) {
       // Redirect to login page if not authenticated
       return Response.redirect(new URL("/shoppingCart", request.url));

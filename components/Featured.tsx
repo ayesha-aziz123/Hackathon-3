@@ -1,7 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BsCart2 } from "react-icons/bs";
-import { FaRegHeart, FaSearchPlus } from "react-icons/fa";
 
 interface Product {
   _id: string;
@@ -21,7 +19,7 @@ function Featured({ data }: Props) {
   return (
     <div className="max-w-[1920px] px-[2px] sm:mx-10 lg:mx-32 xl:mx-auto my-20 ">
       {/* Header */}
-      <h1 className="text-center text-[32px] sm:text-[36px] lg:text-[42px] font-[600] py-6 leading-[40px] sm:leading-[45px] lg:leading-[49.22px] text-[#1A0B5B]">
+      <h1 className="text-center animate-bounce text-[32px] sm:text-[36px] lg:text-[42px] font-[600] py-6 leading-[40px] sm:leading-[45px] lg:leading-[49.22px] text-[#1A0B5B]">
         Featured Products
       </h1>
 
@@ -32,10 +30,10 @@ function Featured({ data }: Props) {
           <Link key={item._id} href={`/products/${item._id}`}>
             <div
               key={item._id}
-              className="relative group w-full sm:w-[270px] flex justify-center items-center flex-col shadow-lg shadow-[#e1dfdf]"
+              className="relative  hover:scale-[1.02] transition-all ease-in hover:shadow-lg group w-full sm:w-[270px] flex justify-center items-center flex-col shadow-lg shadow-[#e1dfdf]"
             >
               <div className="bg-[#F6F7FB] w-full sm:w-[270px] h-[236px] flex justify-center items-center mx-auto">
-                <div className="absolute top-4 left-3 gap-x-4 flex items-center">
+                {/* <div className="absolute top-4 left-3 gap-x-4 flex items-center">
                   <BsCart2
                     size={20}
                     className="text-[#2F1AC4] opacity-0 group-hover:opacity-100"
@@ -48,7 +46,7 @@ function Featured({ data }: Props) {
                     size={20}
                     className="text-[#4a8ba0] opacity-0 group-hover:opacity-100"
                   />
-                </div>
+                </div> */}
                 <Image
                   src={item.image}
                   width={2000}
@@ -57,7 +55,7 @@ function Featured({ data }: Props) {
                   className="w-[178px] object-cover"
                 />
               </div>
-              <div className="bg-opacity-0 group-hover:bg-[#2F1AC4] w-full text-white">
+              <div className="bg-opacity-0 group-hover:bg-[#4c438e] transition-all ease-linear w-full text-white">
                 {/* <button className=" flex justify-end items-center p-3 bottom-0 bg-green-500">
                   View details
                 </button> */}

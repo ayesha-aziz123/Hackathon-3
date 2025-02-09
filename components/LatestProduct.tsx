@@ -1,7 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BsCart2 } from "react-icons/bs";
-import { FaRegHeart, FaSearchPlus } from "react-icons/fa";
 
 interface Product {
   _id: string;
@@ -45,7 +43,7 @@ function LatestProduct({ data }: Props) {
             >
               {/* Image Section */}
 
-              <div className="w-full group h-[200px] sm:h-[220px] lg:h-[270px] bg-[#F7F7F7] flex justify-center items-center relative">
+              <div className="w-full hover:scale-[1.02] transition-all ease-in hover:shadow-lg group h-[200px] sm:h-[220px] lg:h-[270px] bg-[#F7F7F7] flex justify-center items-center relative">
                 <div className="opacity-0 group-hover:opacity-100 absolute top-4 left-4 bg-gray-00 rounded-full p-2">
                   <Image
                     src={"/features/sale.png"}
@@ -55,7 +53,7 @@ function LatestProduct({ data }: Props) {
                     className="object-contain"
                   />
                 </div>
-                <div className="flex flex-col justify-start opacity-0 group-hover:opacity-100 gap-4 py-2 ">
+                {/* <div className="flex flex-col justify-start opacity-0 group-hover:opacity-100 gap-4 py-2 ">
                   <BsCart2
                     size={20}
                     className="text-[#2F1AC4] cursor-pointer"
@@ -68,7 +66,7 @@ function LatestProduct({ data }: Props) {
                     size={20}
                     className="text-[#4A8BA0] cursor-pointer"
                   />
-                </div>
+                </div> */}
                 <Image
                   src={item.image}
                   width={2000}

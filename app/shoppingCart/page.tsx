@@ -3,13 +3,7 @@ import { useShoppingCart } from "use-shopping-cart";
 import Image from "next/image";
 import Link from "next/link";
 
-// interface CartItem {
-//   id: string;
-//   name: string;
-//   image?: string;
-//   price: number;
-//   quantity: number;
-// }
+
 
 const ShoppingCart: React.FC = () => {
   const {
@@ -98,7 +92,7 @@ const ShoppingCart: React.FC = () => {
           </table>
           <div className="my-7">
             <button
-              className="bg-red-400 p-4 text-white font-semibold"
+              className="bg-red-500 p-3 hover:bg-red-400 rounded-[5px] text-white font-semibold"
               onClick={clearCart}
             >
               Clear Cart
@@ -125,7 +119,7 @@ const ShoppingCart: React.FC = () => {
               Shipping & taxes calculated at checkout.
             </p>
             <Link href={"/checkout"}>
-              <button className="bg-[#19D16F] text-white w-full h-12 rounded-md font-semibold">
+              <button className="bg-[#19D16F] hover:bg-[#4e9f74] text-white w-full h-12 rounded-md font-semibold">
                 Proceed To Checkout
               </button>
             </Link>

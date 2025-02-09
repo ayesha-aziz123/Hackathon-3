@@ -30,7 +30,7 @@ function TrendingProduct({ data }: Props) {
              <Link key={img._id} href={`/products/${img._id}`}>
             <div
               key={index}
-              className="w-full lg:w-[260px] shadow-lg shadow-gray-200 flex flex-col justify-center items-center"
+              className="w-full  hover:scale-[1.02] transition-all ease-in hover:shadow-2xl lg:w-[260px] shadow-lg shadow-gray-200 flex flex-col justify-center items-center"
             >
               <div className="w-full lg:w-[240px] h-[200px] md:h-[269.96px] mx-auto bg-[#F7F7F7]">
                 <Image

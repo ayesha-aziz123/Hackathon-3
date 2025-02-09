@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 const ShippingInfo: React.FC = () => {
   const { cartDetails, totalPrice } = useShoppingCart();
-  const [loading, setLoading] = useState(false); // ⏳ Loader state added
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -18,19 +18,20 @@ const ShippingInfo: React.FC = () => {
     city: "",
   });
 
-  
-
-
   const { user } = useUser();
   console.log("user_Id clerk ki✨", user?.id);
 
   const handleCheckout = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true); // ⏳ Start Loader
-    
 
     try {
-      await Checkout(Object.values(cartDetails ?? {}), formData, totalPrice, user?.id); // Payment method nahi pass kar raha
+      await Checkout(
+        Object.values(cartDetails ?? {}),
+        formData,
+        totalPrice,
+        user?.id
+      ); // Payment method nahi pass kar raha
       setTimeout(() => {
         setLoading(false); // ⏹ Stop Loader
         router.push("/ordercompleted"); // ✅ Navigate after order creation
@@ -48,7 +49,7 @@ const ShippingInfo: React.FC = () => {
       formData.email &&
       formData.phone &&
       formData.address &&
-      formData.city 
+      formData.city
     );
   };
 
@@ -74,7 +75,9 @@ const ShippingInfo: React.FC = () => {
             type="email"
             name="email"
             value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
             className="w-full p-3 border border-gray-300 rounded-md"
             placeholder="Enter your email"
             required
@@ -87,7 +90,9 @@ const ShippingInfo: React.FC = () => {
             type="tel"
             name="phone"
             value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, phone: e.target.value })
+            }
             className="w-full p-3 border border-gray-300 rounded-md"
             placeholder="Enter your phone number"
             required
@@ -100,7 +105,9 @@ const ShippingInfo: React.FC = () => {
             type="text"
             name="address"
             value={formData.address}
-            onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, address: e.target.value })
+            }
             className="w-full p-3 border border-gray-300 rounded-md"
             placeholder="Enter your address"
             required

@@ -75,8 +75,8 @@ const Order = () => {
   return (
     <>
       <Heading heading="My Orders" />
-      <div className="container mx-auto p-8">
-        <div className="overflow-x-auto">
+      <div className="container mx-auto md:p-8 p-3 ">
+        <div className="overflow-x-auto custom-scrollbar2">
           <table className="w-full mx-auto border border-gray-300 rounded-lg">
             <thead>
               <tr className="bg-gray-100 text-left">
@@ -123,9 +123,9 @@ const Order = () => {
           </table>
         </div>
 
-        {selectedOrder && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-            <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full relative">
+        {/* {selectedOrder && (
+          <div className="fixed inset-0 overflow-y-auto  bg-black bg-opacity-50 flex items-center justify-center p-4">
+            <div className="bg-white p-6 rounded-lg shadow-lg max-w-2xl  w-full relative">
               <button
                 className="absolute border-4 px-2 py-1 top-2 right-4 text-lg text-gray-700 hover:text-black"
                 onClick={() => setSelectedOrder(null)}
@@ -175,7 +175,62 @@ const Order = () => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
+
+{selectedOrder && (
+  <div className="fixed inset-0 z-[100] my-auto bg-black bg-opacity-50  flex items-center justify-center p-4">
+    <div className="bg-white p-6 rounded-xl shadow-lg max-w-3xl custom-scrollbar w-full h-[85%]  relative overflow-y-auto">
+      <button
+        className="absolute border-4 px-2 py-1 top-2 right-4 text-lg text-gray-700 hover:text-black"
+        onClick={() => setSelectedOrder(null)}
+      >
+        ✖
+      </button>
+      <h3 className="text-xl font-bold text-blue-800 mb-5">Order Details</h3>
+      <div className="space-y-3">
+        <p>
+          <strong>Order ID:</strong> {selectedOrder.orderId}
+        </p>
+        <p>
+          <strong>Customer:</strong> {selectedOrder.customer?.name || "N/A"}
+        </p>
+        <p>
+          <strong>Email:</strong> {selectedOrder.customer?.email || "N/A"}
+        </p>
+        <p>
+          <strong>Status:</strong> {selectedOrder.status}
+        </p>
+        <div className="mt-4">
+          <h4 className="font-semibold text-lg my-2">Products:</h4>
+          <div className="max-h-[400px] custom-scrollbar overflow-y-auto space-y-2">
+            {selectedOrder.items.map((item, index) => (
+              <div
+                key={index}
+                className="flex hover:scale-[1.02] transition-all ease-in cursor-pointer hover:bg-gray-200 justify-between items-center mt-2 border p-4 rounded-md shadow-md"
+              >
+                <div>
+                  <Image
+                    src={item.product.image}
+                    alt={item.product.name}
+                    width={50}
+                    height={50}
+                    className="rounded-md"
+                  />
+                  <p className="font-semibold w-36">{item.product.name}</p>
+                </div>
+                <div>
+                  <p>Quantity: {item.quantity}</p>
+                  <p>Price: ${item.product.price}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
       </div>
     </>
   );
