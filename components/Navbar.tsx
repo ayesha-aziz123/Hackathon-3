@@ -5,7 +5,6 @@ import { IoIosArrowDown } from "react-icons/io";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MdMenu } from "react-icons/md";
 import { BsCart2 } from "react-icons/bs";
-import { FiUser } from "react-icons/fi";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -90,9 +89,6 @@ function Navbar() {
                     <BsCart2 size={20} className=" w-10 hover:text-pink-600" />
                   </Link>
 
-                  <Link href={"/myaccount"}>
-                    <FiUser size={20} className=" w-10 hover:text-pink-600" />
-                  </Link>
                 </div>
                 <div className="relative">
                   <SearchWithSanity />
