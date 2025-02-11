@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛍️ HEKTO - Premium Furniture E-Commerce Platform 🛋️✨  
 
-## Getting Started
+🚀 **Transforming the way you shop for furniture!** 🚀  
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🏡 **Overview**  
+Welcome to **Hekto**, a feature-rich e-commerce platform designed for seamless online furniture shopping. With a sleek, modern UI and a powerful backend, Hekto makes it effortless to browse, select, and purchase high-quality furniture for your home or office.  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Built with **Next.js 14, Tailwind CSS, and Sanity CMS**, this project focuses on **performance, scalability, and user experience**. 💻✨  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🎯 **Project Purpose & Goals**  
+- Provide an **intuitive and engaging** online furniture shopping experience.  
+- Ensure **fast and secure transactions** with Stripe integration.  
+- Enable **real-time product management** via Sanity CMS.  
+- Deliver a **fully responsive, mobile-first UI** for an optimal experience on all devices.  
+- Implement **authentication & user management** using Clerk.dev.  
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ **Tech Stack**  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### **Frontend**  
+- ⚡ **Framework:** [Next.js 14](https://nextjs.org/) (App Router)  
+- 🎨 **Styling:** [Tailwind CSS](https://tailwindcss.com/) for modern, responsive design  
+- 🖌️ **UI Components:** [ShadCN UI](https://shadcn.dev/) for sleek, professional UI  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### **Backend & CMS**  
+- 🗄️ **CMS:** [Sanity.io](https://www.sanity.io/) for product and inventory management  
+- 🔍 **Data Fetching:** GROQ queries for optimized, real-time data retrieval  
 
-## Deploy on Vercel
+### **Authentication & User Management**  
+- 🔐 **Service:** [Clerk.dev](https://clerk.dev/)  
+- 👤 **Features:** Social logins, email/password authentication, and user session management  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### **Payments & Checkout**  
+- 💳 **Service:** [Stripe](https://stripe.com/) for secure and smooth transactions  
+- 🛒 **Checkout Experience:** Fast and user-friendly  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### **Deployment & Hosting**  
+- 🌍 **Platform:** [Vercel](https://vercel.com/) for high-performance hosting  
+
+---
+
+## 🌟 **Key Features**  
+
+✅ **Wide Furniture Collection** – Explore an extensive range of premium furniture items.  
+✅ **Modern, Mobile-Friendly UI** – Fully responsive for seamless browsing on all devices.  
+✅ **Secure & Smooth Checkout** – Integrated with Stripe for a hassle-free payment experience.  
+✅ **Effortless Authentication** – Powered by Clerk for easy login & user management.  
+✅ **Real-time Product Management** – Admin can update inventory dynamically with Sanity CMS.  
+✅ **Fast & SEO-Optimized** – Built with Next.js 14 for top-tier performance.  
+
+---
+
+## ⚙️ **Installation & Setup**  
+
+1️⃣ **Clone the Repository:**  
+   ```bash
+   git clone https://github.com/your-username/your-repo.git
+   cd your-repo
